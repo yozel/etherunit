@@ -43,24 +43,16 @@ True
 ```
 #### ... but not with other quatities
 ```python
->>> try:
-...     E(".05 eth") * E("2 gwei")  # type: ignore
-... except AssertionError as e:
-...     print("Error:", e)
-...
-Error: 2 gwei is not an integer
+>>> E(".05 eth") * E("2 gwei")  # type: ignore
+AssertionError: 2 gwei is not an integer
 ```
 #### You also can't multiply quatities with other integers, like floats
 ```python
 ```
 #### Why? Because it can result with fractional wei, which is not allowed
 ```python
->>> try:
-...     E(".05 eth") * 1.5  # type: ignore
-... except AssertionError as e:
-...     print("Error:", e)
-...
-Error: 1.5 is not an integer
+>>> E(".05 eth") * 1.5
+AssertionError: 1.5 is not an integer
 ```
 #### You can divide quatities with other integers, the result is always a quatity
 ```python
@@ -82,6 +74,7 @@ Error: 1.5 is not an integer
 >>> divmod(E("10 eth"), E("3 eth"))
 (3, 1 ether)
 ```
+
 ### Conversion
 #### You can convert a quatity to another quatity, though it's not necessary for arithmetic operations
 ```python
@@ -94,3 +87,4 @@ Error: 1.5 is not an integer
 >>> E("10 eth").wei.eth.eth.eth.eth.gwei.wei.wei.wei  # :D
 10000000000000000000 wei
 ```
+
